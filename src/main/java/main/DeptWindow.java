@@ -232,18 +232,11 @@ public class DeptWindow extends JFrame {
 
 				crearDepartamento(departamentoACrear);
 
-				// TO DO Completa el método showDialog de DeptWindow.java para que llame a los
-				// métodos del servicio create o update en función de si se ha creado o editado
-				// el departamento.
-				// CREAR
+
 			} else if (createDialog.getTipo() == TIPO_EDICION.EDITAR) {
 				updateDepartamento(departamentoACrear);
 
-				// TO DO
-				// Completa el método showDialog de DeptWindow.java para que llame a los métodos
-				// del servicio create o update en función de si se ha creado o editado el
-				// departamento.
-				// UPDATE
+
 			}
 
 			getAllDepartamentos();
@@ -266,7 +259,7 @@ public class DeptWindow extends JFrame {
 
 			if(nuevo!=-1){
 				addMensaje(true,"El departamento se ha creado/actualizado correctamente");
-				//getAllDepartamentos();
+
 			}else{
 				addMensaje(true,"Ha ocurrido un error y no se ha podido crear el departamento");
 			}
