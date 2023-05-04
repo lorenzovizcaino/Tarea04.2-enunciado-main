@@ -7,8 +7,7 @@ public class DuplicateInstanceException extends Exception {
 	private Object key;
     private String className;
     
-    public DuplicateInstanceException(String specificMessage, Object key, 
-        String className) {
+    public DuplicateInstanceException(String specificMessage, Object key, String className) {
         
         super(specificMessage + " (key = '" + key + "' - className = '" + 
             className + "')");

@@ -247,7 +247,7 @@ public class DeptWindow extends JFrame {
 	private void updateDepartamento(Departamento departamentoACrear) {
 		boolean exito=departamentoServicio.update(departamentoACrear);
 		if(exito){
-			addMensaje(true,"El departamento se ha creado/actualizado correctamente");
+			addMensaje(true,"El departamento se ha actualizado correctamente");
 		}else{
 			addMensaje(true,"Ha ocurrido un error y no se ha podido actualizar el departamento");
 		}
@@ -255,10 +255,14 @@ public class DeptWindow extends JFrame {
 
 	private void crearDepartamento(Departamento departamentoACrear) {
 		try {
+
 			long nuevo=departamentoServicio.create(departamentoACrear);
+			if(nuevo==-2){
+				throw new DuplicateInstanceException("Ya existe un departamento con ese id. No se ha podido crear.",departamentoACrear.getDeptno(),Departamento.class.getName());
+			}
 
 			if(nuevo!=-1){
-				addMensaje(true,"El departamento se ha creado/actualizado correctamente");
+				addMensaje(true,"El departamento se ha creado correctamente");
 
 			}else{
 				addMensaje(true,"Ha ocurrido un error y no se ha podido crear el departamento");

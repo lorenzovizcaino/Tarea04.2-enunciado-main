@@ -2,6 +2,7 @@ package modelo.dao.departamento;
 
 import modelo.Departamento;
 import modelo.dao.AbstractGenericDao;
+import modelo.exceptions.DuplicateInstanceException;
 import modelo.exceptions.InstanceNotFoundException;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBRuntimeException;
@@ -27,10 +28,15 @@ public class DepartamentoNeoDatisDao extends AbstractGenericDao<Departamento> im
         OID oid = null;
         long oidlong = -1 ;
         try {
+            if(exists(entity.getDeptno())){
+                oidlong=-2;
+            }else{
+                oid = this.dataSource.store(entity);
+                this.dataSource.commit();
+                System.out.println("Creado un objeto "+ getEntityClass()+ " con oid: " + oid.getObjectId());
+            }
 
-            oid = this.dataSource.store(entity);
-            this.dataSource.commit();
-            System.out.println("Creado un objeto "+ getEntityClass()+ " con oid: " + oid.getObjectId());
+
 
         } catch (Exception ex) {
 
@@ -104,7 +110,7 @@ public class DepartamentoNeoDatisDao extends AbstractGenericDao<Departamento> im
 
     @Override
     public boolean exists(Integer dept) {
-        CriteriaQuery query = new CriteriaQuery(Departamento.class, Where.equal("empno", dept));
+        CriteriaQuery query = new CriteriaQuery(Departamento.class, Where.equal("deptno", dept));
         Objects<Departamento> empleados = dataSource.getObjects(query);
         return (empleados.size()==1);
     }
