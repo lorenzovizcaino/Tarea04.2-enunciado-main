@@ -16,7 +16,12 @@ public class ServicioDepartamento implements IServicioDepartamento{
     }
     @Override
     public long create(Departamento dept) throws DuplicateInstanceException {
-        return departamentoDao.create(dept);
+        long nuevo=departamentoDao.create(dept);
+        if(nuevo==-2){
+            throw new DuplicateInstanceException("Ya existe un departamento con ese id. No se ha podido crear.",dept.getDeptno(),Departamento.class.getName());
+        }
+
+        return nuevo;
     }
 
     @Override

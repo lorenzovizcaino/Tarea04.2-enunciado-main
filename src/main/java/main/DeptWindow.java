@@ -257,9 +257,7 @@ public class DeptWindow extends JFrame {
 		try {
 
 			long nuevo=departamentoServicio.create(departamentoACrear);
-			if(nuevo==-2){
-				throw new DuplicateInstanceException("Ya existe un departamento con ese id. No se ha podido crear.",departamentoACrear.getDeptno(),Departamento.class.getName());
-			}
+
 
 			if(nuevo!=-1){
 				addMensaje(true,"El departamento se ha creado correctamente");
