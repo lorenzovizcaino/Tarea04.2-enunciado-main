@@ -267,7 +267,7 @@ public class DeptWindow extends JFrame {
 			}
 		} catch (DuplicateInstanceException e) {
 			//throw new RuntimeException(e);
-			addMensaje(true,"Ya existe un departamento con ese id. No se ha podido crear.");
+			addMensaje(true,e.getMessage().substring(0,61));
 		}
 	}
 
